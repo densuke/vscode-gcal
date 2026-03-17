@@ -1,0 +1,45 @@
+name: Release VSIX
+
+on:
+    push:
+        tags:
+            - "v*"
+
+permissions:
+    contents: write
+
+jobs:
+    build-and-release:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Compile extension
+              run: npm run compile
+
+            - name: Verify compilation output
+              run: test -f out/extension.js
+
+            - name: Package extension
+              run: npm run package
+
+            - name: Read package version
+              id: version
+              run: echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  generate_release_notes: true
+                  files: |
+                      gcal-statusbar-${{ steps.version.outputs.version }}.vsix

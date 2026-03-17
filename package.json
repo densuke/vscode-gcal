@@ -1,0 +1,63 @@
+{
+    "name": "gcal-statusbar",
+    "displayName": "Gcal Statusbar",
+    "description": "Show current or next event from gcal in the status bar",
+    "version": "0.1.0",
+    "publisher": "densuke",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/densuke/vscode-gcal.git"
+    },
+    "homepage": "https://github.com/densuke/vscode-gcal",
+    "bugs": {
+        "url": "https://github.com/densuke/vscode-gcal/issues"
+    },
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onStartupFinished",
+        "onCommand:gcalStatusbar.showEvents",
+        "onCommand:gcalStatusbar.refresh"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "gcalStatusbar.showEvents",
+                "title": "Gcal Statusbar: Show Today's Events"
+            },
+            {
+                "command": "gcalStatusbar.refresh",
+                "title": "Gcal Statusbar: Refresh"
+            }
+        ],
+        "configuration": {
+            "title": "Gcal Statusbar",
+            "properties": {
+                "gcalStatusbar.refreshIntervalSec": {
+                    "type": "number",
+                    "default": 300,
+                    "minimum": 30,
+                    "description": "Refresh interval in seconds for fetching gcal events"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package",
+        "vscode:prepublish": "npm run compile"
+    },
+    "devDependencies": {
+        "@vscode/vsce": "^3.6.2",
+        "@types/node": "^20.17.0",
+        "@types/vscode": "^1.96.0",
+        "typescript": "^5.8.2"
+    }
+}
