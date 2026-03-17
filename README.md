@@ -26,6 +26,11 @@ cargo install --git https://github.com/densuke/gcal.git
 
 Marketplace 公開は行わず、GitHub Releases で配布する `.vsix` を使ってインストールします。
 
+- 直接ダウンロード（最新）:
+	- https://github.com/densuke/vscode-gcal/releases/latest/download/gcal-statusbar-0.1.0.vsix
+- 直接ダウンロード（v0.1.0 固定）:
+	- https://github.com/densuke/vscode-gcal/releases/download/v0.1.0/gcal-statusbar-0.1.0.vsix
+
 1. [Releases](https://github.com/densuke/vscode-gcal/releases) から最新の `.vsix` をダウンロードします。
 2. VS Code で `Extensions: Install from VSIX...` を実行します。
 3. ダウンロードした `.vsix` を選択します。
